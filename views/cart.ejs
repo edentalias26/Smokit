@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+
+<%- include("header"); -%>
+<body>
+
+<div  class="flex">
+  <div class="cart">
+    <h1>Your Shopping Cart</h1>
+    <div id="cart-items">
+      <% cartItems.forEach(item => { %>
+        <div class="cart-item">
+          <img src="<%= item.product.image %>" alt="<%= item.product.name %>">
+          <h2><%= item.product.name %></h2>
+          <p>Quantity: <%= item.quantity %></p>
+          <p>Price: $<%= item.product.price %></p>
+          <p>Total: $<%= item.quantity * item.product.price %></p>
+        </div>
+      <% }); %>
+    </div>
+    <h3>Total Amount: $<%= totalAmount %></h3>
+    <form action="/checkout" method="POST">
+      <button type="submit">Checkout</button>
+    </form>
+  </div>
+</div>
+<%- include("footer"); -%>
+</body>
+</html>
