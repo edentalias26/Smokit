@@ -11,10 +11,14 @@
   <button>
     <a href="/dashboard/add-product">Add New Product</a>
   </button>
+  <button>
+    <a href="/dashboard/orders">Manage orders</a>
+  </button>
+
   <div id="product-list" class="flex">
     <% products.forEach(product => { %>
       <div class="product">
-        <img src="<%= product.image %>" alt="<%= product.name %>">
+        <img style="margin-top: 30px;" src="<%= product.image %>" alt="<%= product.name %>">
         <h2><%= product.name %></h2>
         <p>$<%= product.price %></p>
         <button>

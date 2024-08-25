@@ -18,9 +18,3 @@ exports.getProductPage = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
-
-exports.getCartPage = (req, res) => {
-  const cartItems = []; // Populate with actual cart data
-  const totalAmount = 0; // Calculate the total amount
-  res.render('cart', { cartItems, totalAmount });
-};

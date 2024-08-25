@@ -1,3 +1,4 @@
+const Order = require('../models/order');
 const Product = require('../models/Product');
 
 exports.getDashboardPage = async (req, res) => {
@@ -27,3 +28,13 @@ exports.getEditProductPage = async (req, res) => {
   }
 };
 
+exports.getOrdersPage = async (req, res) => {
+  try {
+    const orders = await Order.find({})
+    .populate('products.product')
+    .sort({ createdAt: -1 });
+    res.render('ordersDashboard', { orders});
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
+};

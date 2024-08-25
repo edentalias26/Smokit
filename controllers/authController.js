@@ -1,41 +1,43 @@
 const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
-exports.registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
-  try {
-    let user = await User.findOne({ email });
-    if (user) return res.status(400).json({ msg: 'User already exists' });
-
-    user = new User({ name, email, password });
-    await user.save();
-
-    const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
-
-    res.json({ token });
-  } catch (err) {
-    res.status(500).json({ msg: 'Server error' });
-  }
+exports.getRegister = (req, res) => {
+    res.render('register');
 };
 
-exports.loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
+exports.postRegister = async (req, res) => {
+    const { username, email, password } = req.body;
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+    try {
+        const user = new User({ username, email, password });
+        await user.save();
+        req.session.user = user;
+        res.redirect('/');
+    } catch (error) {
+        res.status(400).send('Error registering user');
+    }
+};
 
-    const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
+exports.getLogin = (req, res) => {
+    res.render('login');
+};
 
-    res.json({ token });
-  } catch (err) {
-    res.status(500).json({ msg: 'Server error' });
-  }
+exports.postLogin = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user || !(await user.comparePassword(password))) {
+            return res.status(400).send('Invalid email or password');
+        }
+
+        req.session.user = user;
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).send('Error logging in');
+    }
+};
+
+exports.logout = (req, res) => {
+    req.session.destroy();
+    res.redirect('/login');
 };

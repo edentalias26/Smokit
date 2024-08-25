@@ -1,35 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Cart</title>
-  <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/app.css">
 </head>
 
-<%- include("header"); -%>
-<body>
-
-<div  class="flex">
-  <div class="cart">
-    <h1>Your Shopping Cart</h1>
-    <div id="cart-items">
-      <% cartItems.forEach(item => { %>
-        <div class="cart-item">
-          <img src="<%= item.product.image %>" alt="<%= item.product.name %>">
-          <h2><%= item.product.name %></h2>
-          <p>Quantity: <%= item.quantity %></p>
-          <p>Price: $<%= item.product.price %></p>
-          <p>Total: $<%= item.quantity * item.product.price %></p>
-        </div>
-      <% }); %>
-    </div>
-    <h3>Total Amount: $<%= totalAmount %></h3>
-    <form action="/checkout" method="POST">
-      <button type="submit">Checkout</button>
-    </form>
-  </div>
-</div>
-<%- include("footer"); -%>
-</body>
-</html>
+<%- include('header'); -%>
+<h1>Your Cart</h1>
+<ul style="margin: 30px;">
+    <% if (cart.length > 0) { %>
+        <% cart.forEach(item => { %>
+            <li style="margin: 30px; list-style: none;">
+                <img src="/<%= item.product.image %>" alt="<%= item.product.name %>" style="width: 100px;">
+                <h3><%= item.product.name %></h3>
+                <p>Price: $<%= item.product.price %></p>
+                <p>Quantity: <%= item.quantity %></p>
+                <p>Total: $<%= item.product.price * item.quantity %></p>
+                
+                <form action="/cart/update" method="POST" style="display: inline;">
+                    <input type="hidden" name="productId" value="<%= item.productId %>">
+                    <input type="hidden" name="quantityChange" value="1">
+                    <button type="submit">+</button>
+                </form>
+                <form action="/cart/update" method="POST" style="display: inline;">
+                    <input type="hidden" name="productId" value="<%= item.productId %>">
+                    <input type="hidden" name="quantityChange" value="-1">
+                    <button type="submit">-</button>
+                </form>
+                <form action="/cart/remove" method="POST" style="display: inline;">
+                    <input type="hidden" name="productId" value="<%= item.productId %>">
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+            <p>Total Amount: $<%= cart.reduce((total, item) => total + item.product.price * item.quantity, 0) %></p>
+        <% }) %>
+        <form action="/order" method="POST">
+            <button type="submit">Place Order</button>
+        </form>
+    <% } else { %>
+        <p>Your cart is empty.</p>
+    <% } %>
+</ul>

@@ -3,7 +3,8 @@ const multer = require('../middleware/multer');
 const {
   getDashboardPage,
   getAddProductPage,
-  getEditProductPage
+  getEditProductPage,
+  getOrdersPage
 } = require('../controllers/dashboardController');
 
 const {
@@ -20,5 +21,6 @@ router.post('/dashboard/add-product', multer.single('image'), createProduct);
 router.get('/dashboard/edit-product/:id', getEditProductPage);
 router.post('/dashboard/edit-product/:id', multer.single('image'), updateProduct);
 router.post('/dashboard/delete-product/:id', deleteProduct);
+router.get('/dashboard/orders',getOrdersPage);
 
 module.exports = router;

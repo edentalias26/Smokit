@@ -16,8 +16,9 @@
       <h3>Description:</h3>
       <p><%= product.description %></p>
       <p>Price: $<%= product.price %></p>
-      <form action="/cart" method="POST">
+      <form action="/cart/add" method="POST">
         <input type="hidden" name="productId" value="<%= product._id %>">
+        <input style="padding: 10px; width: 40px;" type="number" name="quantity" value="1" min="1">
         <button type="submit">Add to Cart</button>
       </form>
     </div>
