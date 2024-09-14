@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="/dashboard.css" />
+    <link rel="stylesheet" href="/styles/dashboard.css" />
   </head>
   <body>
+    <%- include("dashboardHeader"); -%>
     <h1 style="margin-bottom: 30px">Dashboard</h1>
     <button>
       <a href="/dashboard/add-product">Add New Product</a>
@@ -39,5 +40,4 @@
       <% }); %>
     </div>
   </body>
-  <%- include('footer'); -%>
 </html>

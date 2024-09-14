@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="/dashboard.css" />
+    <link rel="stylesheet" href="/styles/app.css" />
   </head>
+  <%- include('header'); -%>
   <body>
-    <h1>Login</h1>
+    <div class="login">
+      <h1>Login</h1>
     <form
       class="flex"
       style="flex-direction: column"
@@ -22,5 +24,7 @@
     </form>
     <h3>Dont have an account?</h3>
     <a href="/register">Sign up</a>
+    </div>
+    
   </body>
 </html>

@@ -1,11 +1,11 @@
 
 <head>
-    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/styles/app.css">
 </head>
 
 <%- include('header'); -%>
 <h1>Your Cart</h1>
-<ul style="margin: 30px;">
+<ul class="cart" style="margin: 30px;">
     <% if (cart.length > 0) { %>
         <% cart.forEach(item => { %>
             <li style="margin: 30px; list-style: none;">

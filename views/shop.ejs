@@ -1,0 +1,25 @@
+
+<head>
+    <link rel="stylesheet" href="styles/app.css">
+</head>
+
+<%-include('header'); -%>
+<div class="flex">
+    <div id="products" class="card-container" style="margin-top: 50px;">
+        <% products.forEach(product => { %>
+          <div class="card">
+            <a href="/product/<%= product._id %>">
+              <img src="<%= product.image %>" alt="<%= product.name %>">
+              <h2><%= product.name %></h2>
+            </a>
+            <p>Price: $<%= product.price %></p>
+            <form action="/cart/add" method="POST">
+              <input type="hidden" name="productId" value="<%= product._id %>">
+              <button type="submit">Add to Cart</button>
+            </form>
+          </div>
+        <% }); %>
+      </div>
+</div>
+
+<%- include('footer'); -%>

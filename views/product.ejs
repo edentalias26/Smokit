@@ -4,26 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= product.name %></title>
-  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/styles/app.css">
 </head>
 
 <%- include("header"); -%>
 <body>
-  <div class="flex">
-    <div class="product-page">
-      <img style="width: 300px;" src="/<%= product.image %>" alt="<%= product.name %>">
-      <h1><%= product.name %></h1>
-      <h3>Description:</h3>
-      <p><%= product.description %></p>
-      <p>Price: $<%= product.price %></p>
-      <form action="/cart/add" method="POST">
-        <input type="hidden" name="productId" value="<%= product._id %>">
-        <input style="padding: 10px; width: 40px;" type="number" name="quantity" value="1" min="1">
-        <button type="submit">Add to Cart</button>
-      </form>
-    </div>
+  <div class="product-page">
+    <div class="container flex" style="gap: 50px;">
+      <div class="image">
+        <img class="image" src="/<%= product.image %>" alt="<%= product.name %>">
+      </div>
+      <div class="flex" style="flex-direction: column; align-items: flex-end;">
+        <div class="texts">
+          <h1><%= product.name %></h1>
+          <h3>Price: $<%= product.price %></h3>
+          <p><%= product.description %></p>
+        </div>
+        <div class="icons">
+          <%-include ("productDetails")-%></div>
+        </div>
+      </div>
+      
   </div>
-
+    <form action="/cart/add" method="POST">
+      <input type="hidden" name="productId" value="<%= product._id %>">
+      <button type="submit">Add to Cart</button>
+    </form>
 
 <%- include("footer"); -%>
 </body>

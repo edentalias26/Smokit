@@ -1,11 +1,31 @@
 const Product = require('../models/Product');
+const PageText = require('../models/Page');
 
 exports.getHomePage = async (req, res) => {
   try {
     const products = await Product.find();
-    res.render('index', { products });
+    const pageText = await PageText.find();
+    res.render('index', { products, pageText });
   } catch (err) {
     res.status(500).send('Server Error');
+  }
+};
+
+exports.getShopPage = async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.render('shop', { products });
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
+};
+
+exports.getAboutPage = async (req, res) => {
+  try {
+    const pageText = await PageText.find();
+    res.render("about", { pageText });
+  } catch (err) {
+    res.status(500).send("Server Error");
   }
 };
 

@@ -1,0 +1,17 @@
+<head>
+    <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+
+<form class="flex" style="flex-direction: column;" action="/dashboard/home/<%= pageText._id %>" method="post">
+    <label for="title">Title:</label>
+    <input 
+    type="text" 
+    name="title"
+    id="title"
+    value="<%= pageText.title %>">
+    <textarea 
+    type="text"
+    name="content" 
+    id="content"> <%= pageText.content %></textarea>
+    <button type="submit">add</button>
+</form>
