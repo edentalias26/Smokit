@@ -66,6 +66,7 @@ exports.updateProduct = async (req, res) => {
       product.name = req.body.name || product.name;
       product.description = req.body.description || product.description;
       product.price = req.body.price || product.price;
+      product.category = req.body.category || product.category
 
       await product.save();
 

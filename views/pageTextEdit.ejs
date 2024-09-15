@@ -1,17 +1,34 @@
 
 <head>
-    <link rel="stylesheet" href="/styles/app.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
 </head>
 <%- include('dashboardHeader'); -%>
 <%- include("hero"); -%>
 
 
 </form>
-<% pageText.forEach((text) => { %>
-    <div class="flex" style="margin-top: -150px;">
-        <button style="width: 200px;">
-        <a href="/dashboard/home/<%= text._id %>">Edit</a>
-        </button>
-    </div>
-<% }) %>
+<% if(pageText.length > 0) { %>
+    <% pageText.forEach((text) => { %>
+        <div class="flex" style="margin-top: -150px;">
+            <button style="width: 200px;">
+            <a href="/dashboard/home/<%= text._id %>">Edit</a>
+            </button>
+        </div>
+    <% }) %>
+<% } else { %>
+    <form class="flex" style="flex-direction: column;" action="/dashboard/home" method="post">
+        <label for="title">Title:</label>
+        <input 
+        type="text" 
+        name="title"
+        id="title"
+        >
+        <textarea 
+        type="text"
+        name="content" 
+        id="content"></textarea>
+        <button type="submit">add</button>
+    </form>
+ <% } %>
+
 

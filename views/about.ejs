@@ -4,6 +4,9 @@
 <div class="flex">
     <div>
         <h1 style="margin-top: 50px;">About us</h1>
+        <% aboutText.forEach((text) => { %>
+            <p><%= text.content %></p>
+        <% }) %>
     </div>
 </div>
 

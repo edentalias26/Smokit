@@ -17,8 +17,11 @@ const {
   createPageText, 
   getPageText,
   updatePageText,
-  deletePageText,
+  createAboutText,
+  updateAboutText,
   getTextEditPage,
+  getAboutEditPage,
+  editAboutPageText
 } = require('../controllers/pageTextController');
 
 
@@ -33,7 +36,12 @@ router.post('/dashboard/delete-product/:id', deleteProduct);
 router.get('/dashboard/orders',getOrdersPage);
 
 router.get('/dashboard/home' , getTextEditPage)
+router.get('/dashboard/about', getAboutEditPage)
+router.post('/dashboard/about', createAboutText)
+router.post('/dashboard/about/:id', updateAboutText)
+router.post('/dashboard/home', createPageText)
 router.post('/dashboard/home/:id', updatePageText);
 router.get('/dashboard/home/:id' , getPageText);
+router.get('/dashboard/about/:id' , editAboutPageText);
 
 module.exports = router;

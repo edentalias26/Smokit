@@ -15,7 +15,7 @@
         <img class="image" src="/<%= product.image %>" alt="<%= product.name %>">
       </div>
       <div class="flex" style="flex-direction: column; align-items: flex-end;">
-        <div class="texts">
+        <div class="texts" style="padding-right: 50px;">
           <h1><%= product.name %></h1>
           <h3>Price: $<%= product.price %></h3>
           <p><%= product.description %></p>
@@ -26,11 +26,31 @@
       </div>
       
   </div>
-    <form action="/cart/add" method="POST">
+    <form style="margin-top: -50px;" action="/cart/add" method="POST">
       <input type="hidden" name="productId" value="<%= product._id %>">
       <button type="submit">Add to Cart</button>
     </form>
-
+<div>
+  <h1 class="flex" style="margin-top: 20px;">Related Products</h1>
+  <div class="flex">
+    <div style="margin-top: 50px;">
+        <% products.forEach((product) => { %>
+            <div class="card">
+                <a href="/product/<%= product.category %>/<%= product._id %>">
+                  <img src="/<%= product.image %>" alt="<%= product.name %>">
+                  <h3><%= product.name %></h3>
+                </a>
+                <p>Price: $<%= product.price %></p>
+                  <form action="/cart/add" method="POST">
+                    <input type="hidden" name="productId" value="<%= product._id %>">
+                    <button type="submit">Add to Cart</button>
+                  </form>
+              </div>
+        <% }) %>
+    </div>
+    
+</div>
+</div>
 <%- include("footer"); -%>
 </body>
 </html>

@@ -42,6 +42,16 @@
         />
       </div>
       <div class="flex" style="flex-direction: column">
+        <label for="price">category:</label>
+        <input
+          type="text"
+          id="category"
+          name="category"
+          value="<%= product.category %>"
+          required
+        />
+      </div>
+      <div class="flex" style="flex-direction: column">
         <label for="image">Image</label>
         <input type="file" id="image" name="image" />
         <img

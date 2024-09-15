@@ -1,0 +1,11 @@
+<head>
+    <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+
+<form class="flex" style="flex-direction: column;" action="/dashboard/about/<%= aboutText._id %>" method="post">
+    <textarea 
+    type="text"
+    name="content" 
+    id="content"> <%= aboutText.content %></textarea>
+    <button type="submit">add</button>
+</form>

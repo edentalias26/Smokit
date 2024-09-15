@@ -1,0 +1,30 @@
+
+<head>
+    <link rel="stylesheet" href="/styles/app.css">
+</head>
+<%- include('dashboardHeader'); -%>
+
+<body>
+    <div  class="flex">
+        <% if(aboutText.length > 0) { %>
+            <% aboutText.forEach((text) => { %>
+                <div style="margin-top: 50px;">
+                    <button style="width: 200px;">
+                    <a href="/dashboard/about/<%= text._id %>">Edit</a>
+                    </button>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <form class="flex" style="flex-direction: column;" action="/dashboard/about" method="post">
+                
+                <textarea style="width: 350px; height: 400px; margin-top: 50px; text-align: right; padding: 20px;" 
+                type="text"
+                name="content" 
+                id="content"></textarea>
+                <button type="submit">add</button>
+            </form>
+         <% } %>
+        </form>
+    </div>
+</body>
+    

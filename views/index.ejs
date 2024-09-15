@@ -10,24 +10,29 @@
 
   <%- include('header'); -%>
   <%- include("hero"); -%>
-
-  <h2 style="margin-bottom: 30px;">Products</h2>
   
-  <div id="products" class="card-container">
-    <% products.forEach(product => { %>
-      <div class="card">
-        <a href="/product/<%= product._id %>">
-          <img src="<%= product.image %>" alt="<%= product.name %>">
-          <h2><%= product.name %></h2>
-        </a>
-        <p>Price: $<%= product.price %></p>
-        <form action="/cart/add" method="POST">
-          <input type="hidden" name="productId" value="<%= product._id %>">
-          <button type="submit">Add to Cart</button>
-        </form>
-      </div>
-    <% }); %>
-  </div>
+  <% productsGroupedByCategory.forEach(group => { %>
+    <section class="category-section">
+      <a href="/category/<%= group.category %>">
+        <h2 style="margin: 50px;"><%= group.category %></h2>
+      </a>
+        <div class="flex">
+            <% group.products.forEach(product => { %>
+                <div class="card">
+                  <a href="/product/<%= product.category %>/<%= product._id %>">
+                    <img src="<%= product.image %>" alt="<%= product.name %>">
+                    <h3><%= product.name %></h3>
+                  </a>
+                  <p>Price: $<%= product.price %></p>
+                    <form action="/cart/add" method="POST">
+                      <input type="hidden" name="productId" value="<%= product._id %>">
+                      <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+<% }) %>
   <%- include("productDetails"); -%>
   <%- include("footer"); -%>
 </body>
