@@ -1,9 +1,11 @@
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/dashboard.css">
 </head>
 
 <form class="flex" style="flex-direction: column;" action="/dashboard/about/<%= aboutText._id %>" method="post">
     <textarea 
+    dir="rtl"
     type="text"
     name="content" 
     id="content"> <%= aboutText.content %></textarea>

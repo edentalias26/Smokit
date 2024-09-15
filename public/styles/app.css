@@ -4,7 +4,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
+.product-btn{
+    position: absolute;
+    right: 300px;
+}
 .flex{
     display: flex;
     justify-content: center;
@@ -155,6 +158,20 @@ input{
     text-align: right;
     border-radius: 10px;
 }
+
+.hero-text{
+    font-size: 130%;
+    width: 50%;
+    margin-right: -400px;
+}
+
+@media (max-width:800px){
+    .hero-text{
+        font-size: 120%;
+        width: 80%;
+        margin: 0;
+    }
+}
 @media (max-width:600px) {
     nav{
         display: none;
@@ -194,5 +211,14 @@ input{
     .product-page .image{
         width: 350px;
         border-radius: 10px;
+    }
+
+    .hero-text{
+        width: 90%;
+        font-size: 100%;
+        margin: 0;
+    }
+    .product-btn{
+        right: 200px;
     }
 }

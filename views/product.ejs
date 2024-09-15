@@ -17,7 +17,7 @@
       <div class="flex" style="flex-direction: column; align-items: flex-end;">
         <div class="texts" style="padding-right: 50px;">
           <h1><%= product.name %></h1>
-          <h3>Price: $<%= product.price %></h3>
+          <h3>Price: ₪<%= product.price %></h3>
           <p><%= product.description %></p>
         </div>
         <div class="icons">
@@ -28,19 +28,19 @@
   </div>
     <form style="margin-top: -50px;" action="/cart/add" method="POST">
       <input type="hidden" name="productId" value="<%= product._id %>">
-      <button type="submit">Add to Cart</button>
+      <button class="product-btn" type="submit">Add to Cart</button>
     </form>
 <div>
-  <h1 class="flex" style="margin-top: 20px;">Related Products</h1>
+  <h1 class="flex" style="margin-top: 100px;">מוצרים קשורים</h1>
   <div class="flex">
-    <div style="margin-top: 50px;">
+    <div style="margin-top: 50px;" class="flex">
         <% products.forEach((product) => { %>
             <div class="card">
                 <a href="/product/<%= product.category %>/<%= product._id %>">
                   <img src="/<%= product.image %>" alt="<%= product.name %>">
                   <h3><%= product.name %></h3>
                 </a>
-                <p>Price: $<%= product.price %></p>
+                <p>Price: ₪<%= product.price %></p>
                   <form action="/cart/add" method="POST">
                     <input type="hidden" name="productId" value="<%= product._id %>">
                     <button type="submit">Add to Cart</button>

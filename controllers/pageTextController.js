@@ -1,5 +1,5 @@
 const PageText = require('../models/Page');
-const AboutText = require('../models/about');
+const AboutText = require('../models/About');
 
 
 

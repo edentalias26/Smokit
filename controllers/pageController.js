@@ -1,6 +1,6 @@
 const Product = require('../models/Product');
 const PageText = require('../models/Page');
-const AboutText = require('../models/about');
+const AboutText = require('../models/About');
 
 exports.getHomePage = async (req, res) => {
   try {

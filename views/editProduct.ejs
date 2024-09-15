@@ -19,6 +19,7 @@
         <label for="name">Name:</label>
         <input
           type="text"
+          dir="rtl"
           id="name"
           name="name"
           value="<%= product.name %>"
@@ -27,13 +28,14 @@
       </div>
       <div class="flex" style="flex-direction: column">
         <label for="description">Description:</label>
-        <textarea id="description" name="description" required>
+        <textarea id="description" name="description" dir="rtl" required>
 <%= product.description %></textarea
         >
       </div>
       <div class="flex" style="flex-direction: column">
         <label for="price">Price:</label>
         <input
+        dir="rtl"
           type="number"
           id="price"
           name="price"
@@ -44,6 +46,7 @@
       <div class="flex" style="flex-direction: column">
         <label for="price">category:</label>
         <input
+        dir="rtl"
           type="text"
           id="category"
           name="category"
@@ -53,7 +56,8 @@
       </div>
       <div class="flex" style="flex-direction: column">
         <label for="image">Image</label>
-        <input type="file" id="image" name="image" />
+        <input type="file" id="image" name="image"
+        dir="rtl" />
         <img
           src="/<%= product.image %>"
           alt="<%= product.name %>"
