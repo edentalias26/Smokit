@@ -12,9 +12,9 @@
   <%- include("hero"); -%>
   
   <% productsGroupedByCategory.forEach(group => { %>
-    <section class="category-section">
+    <section>
       <a href="/category/<%= group.category %>">
-        <h2 style="margin: 50px;"><%= group.category %></h2>
+        <h1 style="text-align: center; margin-top: 20px;"><%= group.category %></h1>
       </a>
         <div class="flex">
             <% group.products.forEach(product => { %>

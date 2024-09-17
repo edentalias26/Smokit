@@ -9,10 +9,10 @@
   <body>
     <%- include("dashboardHeader"); -%>
     <h1 style="margin-bottom: 30px">Dashboard</h1>
-    <button>
+    <button class="dashboard-button">
       <a href="/dashboard/add-product">Add New Product</a>
     </button>
-    <button>
+    <button class="dashboard-button">
       <a href="/dashboard/orders">Manage orders</a>
     </button>
 
@@ -26,7 +26,7 @@
         />
         <h2><%= product.name %></h2>
         <p>$<%= product.price %></p>
-        <button>
+        <button class="dashboard-button">
           <a href="/dashboard/edit-product/<%= product._id %>">Edit</a>
         </button>
 
@@ -34,7 +34,7 @@
           action="/dashboard/delete-product/<%= product._id %>"
           method="POST"
         >
-          <button type="submit">Delete</button>
+          <button class="dashboard-button" type="submit">Delete</button>
         </form>
       </div>
       <% }); %>

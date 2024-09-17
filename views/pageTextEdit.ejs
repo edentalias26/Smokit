@@ -10,8 +10,10 @@
 </form>
 <% if(pageText.length > 0) { %>
     <% pageText.forEach((text) => { %>
-        <div class="flex" style="margin-top: -150px;">
-            <button style="width: 200px;">
+        <div class="flex">
+            <button  style="width: 200px;
+            margin-top: 20px;
+            z-index: 30;">
             <a href="/dashboard/home/<%= text._id %>">Edit</a>
             </button>
         </div>

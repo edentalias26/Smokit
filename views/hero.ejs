@@ -8,14 +8,38 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="hero-BG" >
-        <div class="flex">
-            <div class="hero-text">
-                <% pageText.forEach((text) => { %>
-                    <h1 style="margin-top: 50px; text-align: right;"> <%= text.title %></h1>
-                    <p style=" text-align: right;"> <%= text.content %></p>
-                <% }); %>
-             </div>
+    <div class="flex">
+        <div class="hero-BG">
+            <div>
+                <div class="hero-header">
+                    <a href="/cart" class="fas fa-shopping-cart" style="font-size: larger;
+                     border: 0.5px solid white;
+                     border-radius: 5px;
+                     padding: 10px;" ></a>
+                    <a href="/"><img style="max-width: 100px;" src="/images/smokit-white.png" alt="Logo"></a>
+                    <nav class="hero-nav-links">
+                        <a href="/">עמוד הבית</a>
+                        <a href="/about">אודות עמוד</a>
+                        <a href="/shop">לקנות עכשיו</a>
+                        <a href="/orders">הזמנות</a>
+                    </nav>
+                    <div class="hero-nav-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <div class="hero-text">
+                        <% pageText.forEach((text) => { %>
+                            <h1> <%= text.title %></h1>
+                            <p style="margin-top: 10px;"> <%= text.content %></p>
+                        <% }); %>
+                     </div>
+                </div>
+            </div>
+            
+            
         </div>
         
     </div>

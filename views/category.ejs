@@ -9,7 +9,7 @@
 <body>
     <%- include('header'); -%>
     <div class="flex">
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 50px;" class="flex">
             <% products.forEach((product) => { %>
                 <div class="card">
                     <a href="/product/<%= product.category %>/<%= product._id %>">

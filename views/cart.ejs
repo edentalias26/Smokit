@@ -18,12 +18,12 @@
                 <form action="/cart/update" method="POST" style="display: inline;">
                     <input type="hidden" name="productId" value="<%= item.productId %>">
                     <input type="hidden" name="quantityChange" value="1">
-                    <button type="submit">+</button>
+                    <button style="width: 40px; margin: 10px;" type="submit">+</button>
                 </form>
                 <form action="/cart/update" method="POST" style="display: inline;">
                     <input type="hidden" name="productId" value="<%= item.productId %>">
                     <input type="hidden" name="quantityChange" value="-1">
-                    <button type="submit">-</button>
+                    <button style="width: 40px;" type="submit">-</button>
                 </form>
                 <form action="/cart/remove" method="POST" style="display: inline;">
                     <input type="hidden" name="productId" value="<%= item.productId %>">
