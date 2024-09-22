@@ -1,5 +1,6 @@
 const express = require('express');
-const { getHomePage, getProductPage, getAboutPage, getShopPage, getProductByCategory } = require('../controllers/pageController');
+const auth = require('../middleware/authMiddleware');
+const { getHomePage, getProductPage, getAboutPage, getShopPage, getProductByCategory, getCreateOrderPage } = require('../controllers/pageController');
 
 
 const router = express.Router();
@@ -10,4 +11,5 @@ router.get('/', getHomePage);
 router.get('/about', getAboutPage);
 router.get('/product/:category/:id', getProductPage);
 router.get('/category/:category', getProductByCategory);
+router.post('/order/add', auth, getCreateOrderPage);
 module.exports = router;

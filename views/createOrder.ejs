@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles/app.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('header'); -%>
+    <div class="flex">
+        <div style="margin-top: 60px;">
+            <form action="/order" method="post">
+                <div class="flex" style="flex-direction: column;">
+                    <% products.forEach((product) => { %>
+                        <h2><%= product.name %></h2>
+                        <img src="/<%= product.image %>" alt="product.name" width="100px">
+                        <p>price: ₪<%= product.price %></p>
+                        <p>Quantity: <%= product.quantity %></p>
+                        <p> Total : <%= product.price * product.quantity %></p>
+                    <% }) %>
+                </div>
+                <p>Total Price: ₪ $<%= products.reduce((sum, product) => sum + (product.price * product.quantity), 0) %> </p>
+                <hr>
+                <button style="margin: 10px;" type="submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+

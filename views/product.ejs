@@ -23,9 +23,15 @@
         </div>
         <div class="icons">
           <%-include ("productDetails")-%>
-          <form action="/cart/add" method="POST"></form>
+          <form action="/cart/add" method="POST">
             <input type="hidden" name="productId" value="<%= product._id %>">
+            <input type="hidden" name="quantity" value="1">
             <button class="product-btn" type="submit">Add to Cart</button>
+          </form>
+          <form action="/cart/add" method="POST">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <input type="hidden" name="quantity" value="1">
+            <button class="product-btn" type="submit">Buy now</button>
           </form>
         </div>
       </div>
@@ -40,7 +46,7 @@
 <div>
   <h1 class="flex" style="margin-top: 100px;">מוצרים קשורים</h1>
   <div class="flex">
-    <div style="margin-top: 50px;" class="flex">
+    <div style="margin: 50px;" class="flex">
         <% products.forEach((product) => { %>
             <div class="card">
                 <a href="/product/<%= product.category %>/<%= product._id %>">
@@ -50,14 +56,20 @@
                 <p>Price: ₪<%= product.price %></p>
                   <form action="/cart/add" method="POST">
                     <input type="hidden" name="productId" value="<%= product._id %>">
+                    <input type="hidden" name="quantity" value="1">
                     <button type="submit">Add to Cart</button>
+                  </form>
+                  <form action="/cart/add" method="POST">
+                    <input type="hidden" name="productId" value="<%= product._id %>">
+                    <input type="hidden" name="quantity" value="1">
+                    <button style="margin-top: 10px;" type="submit">Buy now</button>
                   </form>
               </div>
         <% }) %>
-    </div>
-    
+    </div>    
 </div>
 </div>
+<%- include('socials'); -%>
 <%- include("footer"); -%>
 </body>
 </html>

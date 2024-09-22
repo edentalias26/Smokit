@@ -40,7 +40,6 @@ exports.createOrder = async (req, res) => {
             totalAmount,
             status: 'Pending' // Default status when order is created
         });
-
         await order.save(); // Save the order to the database
 
         // Clear the cart after order is placed

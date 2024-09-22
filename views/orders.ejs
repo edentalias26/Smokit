@@ -9,7 +9,7 @@
 <%- include('header'); -%>
 <body>
     <div class="flex">
-        <div class="product-page">
+        <div class="order-page">
             <h1>Your Orders</h1>
         <% if (orders.length > 0) { %>
             <% orders.forEach(order => { %>
@@ -18,9 +18,9 @@
                     <p>Status: <%= order.status %></p>
                     <p>Total Amount: ₪<%= order.totalAmount %></p>
                     <p>Ordered on: <%= order.createdAt.toDateString() %></p>
-                    <ul>
+                    <ul style="list-style: none;">
                         <% order.products.forEach(item => { %>
-                            <li>
+                            <li style="margin: 20px;">
                                 <img src="/<%= item.product.image %>" alt="<%= item.product.name %>" style="width: 100px;">
                                 <p><%= item.product.name %> - Quantity: <%= item.quantity %></p>
                                 <p>Price: ₪<%= item.product.price %></p>

@@ -5,10 +5,10 @@ exports.getRegister = (req, res) => {
 };
 
 exports.postRegister = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { fName, email, password, phone, shippingAddress } = req.body;
 
     try {
-        const user = new User({ username, email, password });
+        const user = new User({ fName, email, password, phone, shippingAddress });
         await user.save();
         req.session.user = user;
         res.redirect('/');

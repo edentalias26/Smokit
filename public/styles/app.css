@@ -6,6 +6,7 @@
 
 .product-btn{
     width: 350px;
+    margin-top: 5px;
 }
 .flex{
     display: flex;
@@ -140,10 +141,11 @@ button{
     text-align: center;
 }
 input{
-    width: 300px;
-    height: 40px;
-    text-align: right;
+    width: 320px;
+    text-align: left;
     border-radius: 10px;
+    padding: 10px;
+    font-size: large;
 }
 .hero-BG{
     background-image: url("/images/BG.jpg");
@@ -162,11 +164,17 @@ input{
     margin-top: 50px;
 }
 
+.order-page{
+    margin-top: 60px;
+    text-align: center;
+}
+
 .hero-header{
     display: flex;
     justify-content: space-around;
     margin: 20px;
     align-items: center;
+    margin-top: 50px;
 }
 
 .hero-nav-links{
@@ -243,7 +251,6 @@ input{
     .hero-nav-links{
         display: none;
         position: absolute;
-        right: -100%;
         top: 0;
         height: auto;
         flex-direction: column;
@@ -251,8 +258,7 @@ input{
         justify-content: center;
         align-items: center;
         transition: right 0.3s ease;
-        margin-top: 70px;
-        display: block;
+        margin-top: 95px;
         text-align: right;
         padding-right: 40px;
         border-radius: 10px 0 0  10px;
@@ -274,4 +280,5 @@ input{
         color: white;
         padding: 10px;
     }
+    
 }
