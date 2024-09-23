@@ -36,7 +36,7 @@
         <% }) %>
         <p>Total Amount:₪<%= cart.reduce((total, item) => total + item.product.price * item.quantity, 0) %></p>
         <% cart.map(item => { %>
-            <form action="/order/add" method="POST">
+            <form action="/order" method="POST">
                 <input type="hidden" name="productId" value="<%= item.productId %>">
                 <input type="hidden" name="quantity" value="<%= item.quantity %>">
         <% }) %>

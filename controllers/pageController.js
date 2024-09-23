@@ -78,3 +78,10 @@ exports.getCreateOrderPage = async (req, res) => {
     res.send(err);
   }
 }
+
+exports.getDirectOrderPage = async (req, res) => {
+  const {productId, quantity} = req.body;
+  const products = await Product.find({_id: { $in: productId}});
+
+  res.render('directOrder', {products, quantity});
+}

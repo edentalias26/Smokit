@@ -1,6 +1,6 @@
 const express = require('express');
 const auth = require('../middleware/authMiddleware');
-const { getHomePage, getProductPage, getAboutPage, getShopPage, getProductByCategory, getCreateOrderPage } = require('../controllers/pageController');
+const { getDirectOrderPage, getHomePage, getProductPage, getAboutPage, getShopPage, getProductByCategory, getCreateOrderPage } = require('../controllers/pageController');
 
 
 const router = express.Router();

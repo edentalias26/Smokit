@@ -1,32 +1,102 @@
 
 <head>
   <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles/app.css">
+    <!-- Swiper.js Stylesheet (CDN) -->
+  <link rel="stylesheet" href="styles/swiper-bundle.min.css" />
+  <style>
+    .swiper-container {
+      width: 100%;
+      height: auto;
+    }
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      background-color: #f4f4f4;
+    }
+
+    .product-card {
+      text-align: center;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 5px;
+      background-color: white;
+    }
+
+    .product-card img {
+      max-width: 340px;
+      height: auto;
+    }
+  </style>
 </head>
 
 <%-include('header'); -%>
-<div class="flex">
-    <div id="products" class="card-container" style="margin-top: 50px;">
-        <% products.forEach(product => { %>
-          <div class="card">
-            <a href="/product/<%= product._id %>">
-              <img src="<%= product.image %>" alt="<%= product.name %>">
-              <h2><%= product.name %></h2>
-            </a>
-            <p>Price: ₪<%= product.price %></p>
-            <form action="/cart/add" method="POST">
-              <input type="hidden" name="productId" value="<%= product._id %>">
-              <input type="hidden" name="quantity" value="1">
-              <button type="submit">Add to Cart</button>
-            </form>
-            <form action="/cart/add" method="POST">
-              <input type="hidden" name="productId" value="<%= product._id %>">
-              <input type="hidden" name="quantity" value="1">
-              <button style="margin-top: 10px;" type="submit">Buy now</button>
-            </form>
-          </div>
-        <% }); %>
+<body>
+  <div class="flex">
+    <div class="swiper-container" style="margin-top: 80px;">
+      <div class="swiper-wrapper">
+        <!-- Dynamically Render Product Slides -->
+    <% products.forEach(function(product) { %>
+      <div class="swiper-slide">
+        <div class="product-card">
+          <a href="/product/<%= product.category %>/<%= product._id %>">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+            <h3><%= product.name %></h3>
+          </a>
+          <p>Price: $<%= product.price %></p>
+          <form action="/cart/add" method="POST">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit">Add to Cart</button>
+          </form>
+          <form action="/direct-order" method="POST">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <input type="hidden" name="quantity" value="1">
+            <button style="margin-top: 10px;" type="submit">Buy now</button>
+          </form>
+        </div>
       </div>
-</div>
+    <% }); %>
+      </div>
+    </div>
+  </div>
 
+
+
+<script src="/scripts/swiper-bundle.min.js"></script>
+  <script>
+    // Initialize Swiper
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1, // Number of products shown at a time
+      spaceBetween: 10, // Space between products
+      loop: true, // Infinite loop
+      autoplay: {
+        delay: 3000, // Auto-slide every 3 seconds
+        disableOnInteraction: false, // Keep auto-slide after user interaction
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 4,
+        }
+      },
+      grabCursor: true, // Enable grab cursor
+    });
+  </script>
+</body>
 <%- include('footer'); -%>
