@@ -6,6 +6,7 @@
       .swiper-container {
         width: 100%;
         height: auto;
+        overflow: hidden;
       }
   
       .swiper-slide {
@@ -50,7 +51,7 @@
                             <input type="hidden" name="productId" value="<%= product._id %>">
                             <button type="submit">Add to Cart</button>
                           </form>
-                          <form action="/direct-order" method="POST">
+                          <form action="/cart/add" method="POST">
                             <input type="hidden" name="productId" value="<%= product._id %>">
                             <input type="hidden" name="quantity" value="1">
                             <button style="margin-top: 10px;" type="submit">Buy now</button>
