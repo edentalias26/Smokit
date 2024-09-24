@@ -4,7 +4,8 @@ const {
   getDashboardPage,
   getAddProductPage,
   getEditProductPage,
-  getOrdersPage
+  getOrdersPage,
+  updateOrderStatus
 } = require('../controllers/dashboardController');
 
 const {
@@ -34,6 +35,8 @@ router.get('/dashboard/edit-product/:id', getEditProductPage);
 router.post('/dashboard/edit-product/:id', multer.single('image'), updateProduct);
 router.post('/dashboard/delete-product/:id', deleteProduct);
 router.get('/dashboard/orders',getOrdersPage);
+router.post('/dashboard/orders', getOrdersPage )
+router.post('/dashboard/orders/status', updateOrderStatus)
 
 router.get('/dashboard/home' , getTextEditPage)
 router.get('/dashboard/about', getAboutEditPage)

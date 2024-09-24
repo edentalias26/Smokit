@@ -28,12 +28,26 @@ exports.getEditProductPage = async (req, res) => {
 };
 
 exports.getOrdersPage = async (req, res) => {
-  try {
-    const orders = await Order.find({})
-      .populate("products.product")
-      .sort({ createdAt: -1 });
+  const status = req.body.status;
+
+  if (!status) {
+    let orders = await Order.find({status: "Pending"})
+    .populate("products.product")
+    .sort({ createdAt: -1 });
     res.render("ordersDashboard", { orders });
-  } catch (err) {
-    res.status(500).send("Server Error");
+  } else{
+    let orders = await Order.find({status: status})
+    .populate("products.product")
+    .sort({ createdAt: -1 });
+    res.render("ordersDashboard", { orders });
   }
 };
+
+exports.updateOrderStatus = async (req, res) => {
+  const status = req.body.status;
+  const orderId = req.body.orderId;
+  let order = await Order.findById({_id: orderId});
+  order.status = status;
+  await order.save();
+  res.redirect("/dashboard/orders");
+}

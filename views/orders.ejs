@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/app.css">
     <title>Your Orders</title>
+    <style>
+        button{
+            width: 110px;
+            margin: 20px 0;
+        }
+        .order{
+            width: 340px;
+            border: 0.5px solid gray;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        p{
+            margin: 5px;
+            font-size: larger;
+        }
+    </style>
 </head>
 <%- include('header'); -%>
 <body>
     <div class="flex">
-        <div class="order-page">
-            <h1>Your Orders</h1>
+        <div class="order-page flex" >
         <% if (orders.length > 0) { %>
             <% orders.forEach(order => { %>
                 <div class="order">

@@ -1,34 +1,89 @@
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/app.css">
+    <style>
+        button{
+            width: 110px;
+            margin: 20px 0;
+        }
+        .order{
+            width: 340px;
+            border: 0.5px solid gray;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        p{
+            margin: 5px;
+            font-size: larger;
+        }
+    </style>
 </head>
 
 <body>
+    <%- include("dashboardHeader");  -%>
     <div class="flex">
-        <div class="order-dashboard-page">
+        <div class="order-dashboard-page" style="margin: 60px 0; text-align: center;">
             <h1>Orders</h1>
-        <% if (orders.length > 0) { %>
-            <% orders.forEach(order => { %>
-                <div class="order">
-                    <h2>Order ID: <%= order._id %></h2>
-                    <p>Status: <%= order.status %></p>
-                    <p>Total Amount: $<%= order.totalAmount %></p>
-                    <p>Phone: <%= order.user.phone %></p>
-                    <p>email: <%= order.user.email %></p>
-                    <p>shippingAddress: <%= order.user.shippingAddress %></p>
-                    <p>Ordered on: <%= order.createdAt.toDateString() %></p>
-                    <ul style="list-style: none;">
-                        <% order.products.forEach(item => { %>
-                            <li>
-                                <img src="/<%= item.product.image %>" alt="<%= item.product.name %>" style="width: 100px;">
-                                <p><%= item.product.name %> - Quantity: <%= item.quantity %></p>
-                                <p>Price: $<%= item.product.price %></p>
-                            </li>
-                        <% }) %>
-                    </ul>
-                </div>
-            <% }) %>
-        <% } %>
+            <div class="flex">
+                <form action="/dashboard/orders" method="post">
+                    <input type="hidden" name="status" value="Deliverd">
+                    <button type="submit">
+                        <h3>Deliverd</h4>
+                    </button>
+                </form>
+                <a href="/dashboard/orders">
+                <button>
+                    <h4>Pending</h4>
+                </button>
+                </a>
+                <form action="/dashboard/orders" method="post">
+                    <input type="hidden" name="status" value="Completed">
+                    <button type="submit">
+                        <h3>Completed</h4>
+                    </button>
+                </form>
+            </div>
+            <div class="flex">
+                <% if (orders.length > 0) { %>
+                    <% orders.forEach(order => { %>
+                        <div class="order">
+                            <h3>Order ID: <%= order._id %></h3>
+                            <p>Status: <%= order.status %></p>
+                            <p>Total Amount: $<%= order.totalAmount %></p>
+                            <p>Phone: <%= order.user.phone %></p>
+                            <p>email: <%= order.user.email %></p>
+                            <p>shippingAddress: <%= order.user.shippingAddress %></p>
+                            <p>Ordered on: <%= order.createdAt.toDateString() %></p>
+                            <ul style="list-style: none;" class="flex">
+                                <% order.products.forEach(item => { %>
+                                    <li>
+                                        <img src="/<%= item.product.image %>" alt="<%= item.product.name %>" style="width: 100px;">
+                                        <p><%= item.product.name %> - Quantity: <%= item.quantity %></p>
+                                        <p>Price: $<%= item.product.price %></p>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                            <% if ( order.status === "Pending") { %>
+                                <form action="/dashboard/orders/status" method="post">
+                                    <input type="hidden" name="status" value="Deliverd">
+                                    <input type="hidden" name="orderId" value="<%= order._id %>">
+                                    <button type="submit"> Deliver</button>
+                                </form>
+                            <% } else if (order.status === "Deliverd") { %>
+                                <form action="/dashboard/orders/status" method="post">
+                                    <input type="hidden" name="status" value="Completed">
+                                    <input type="hidden" name="orderId" value="<%= order._id %>">
+                                    <button type="submit"> Complete</button>
+                                </form>
+                            <% } else { %>
+                                <div></div>
+                             <% } %>
+                        </div>
+
+                    <% }) %>
+                <% } %>
+            </div>
+        
         </div>
     </div>
     
