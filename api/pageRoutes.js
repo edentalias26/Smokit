@@ -11,5 +11,4 @@ router.get('/', getHomePage);
 router.get('/about', getAboutPage);
 router.get('/product/:category/:id', getProductPage);
 router.get('/category/:category', getProductByCategory);
-router.post('/order/add', auth, getCreateOrderPage);
 module.exports = router;

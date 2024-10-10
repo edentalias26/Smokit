@@ -1,5 +1,6 @@
 const Order = require('../models/Order');
 const Product = require('../models/Product');
+const User = require('../models/User');
 
 exports.createOrder = async (req, res) => {
     const cart = req.session.cart;
@@ -29,10 +30,11 @@ exports.createOrder = async (req, res) => {
         const totalAmount = productsWithDetails.reduce((total, item) => {
             return total + item.product.price * item.quantity;
         }, 0);
+        const userDetails = await User.findById(req.session.user);
 
         // Create a new order document
         const order = new Order({
-            user: req.session.user._id, // Get the user ID from the session
+            user: userDetails, // Get the user ID from the session
             products: productsWithDetails.map(item => ({
                 product: item.product._id,
                 quantity: item.quantity
@@ -64,4 +66,5 @@ exports.getOrders = async (req, res) => {
         res.status(500).send('Error fetching orders');
     }
 };
+
 

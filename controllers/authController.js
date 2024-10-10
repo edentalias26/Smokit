@@ -11,7 +11,9 @@ exports.postRegister = async (req, res) => {
         const user = new User({ fName, email, password, phone, shippingAddress });
         await user.save();
         req.session.user = user;
-        res.redirect('/');
+
+      const redirectUrl = req.session.returnTo || '/';
+        res.redirect(redirectUrl);
     } catch (error) {
         res.status(400).send('Error registering user');
     }
@@ -31,7 +33,8 @@ exports.postLogin = async (req, res) => {
         }
 
         req.session.user = user;
-        res.redirect('/');
+        const redirectUrl = req.session.returnTo || '/';
+        res.redirect(redirectUrl);
     } catch (error) {
         res.status(500).send('Error logging in');
     }

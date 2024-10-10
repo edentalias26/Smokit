@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/app.css">
 </head>
 
 <form class="flex" style="flex-direction: column;" action="/dashboard/home/<%= pageText._id %>" method="post">
@@ -12,6 +12,9 @@
     id="title"
     value="<%= pageText.title %>">
     <textarea 
+    style="width: 340px;
+    height: 300px;
+    padding: 10px;"
     dir="rtl"
     type="text"
     name="content" 

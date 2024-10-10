@@ -60,8 +60,8 @@
                         <input type="hidden" name="quantity" value="1">
                         <button type="submit">Add to Cart</button>
                       </form>
-                      <form action="/cart/add" method="POST">
-                        <input type="hidden" name="productId" value="<%= product._id %>">
+                      <form action="/order" method="POST">
+                        <input type="hidden" name="singleProductId" value="<%= product._id %>">
                         <input type="hidden" name="quantity" value="1">
                         <button style="margin-top: 10px;" type="submit">Buy now</button>
                       </form>
@@ -74,8 +74,21 @@
         </div>
     </section>
 <% }) %>
-  <%- include("productDetails"); -%>
-  <%- include('socials'); -%>
+
+<div class="flex" style="align-items: center;">
+  <div>
+    <%- include("productDetails"); -%>
+  </div>
+  <div>
+    <%- include('socials'); -%>
+  </div>
+</div>
+<div class="flex">
+    <div style=" border: 0.5px solid gray; border-radius: 10px; width: 350px; margin-top: 20px;">
+        <img  style="width: 340px;" src="/images/download - 2024-08-19T185550.111.png" alt="">
+    </div>
+</div>
+</div>
   <%- include("footer"); -%>
   <script src="/scripts/swiper-bundle.min.js"></script>
   <script>

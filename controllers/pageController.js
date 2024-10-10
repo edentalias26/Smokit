@@ -60,28 +60,4 @@ exports.getProductByCategory = async (req, res) => {
   }
 };
 
-exports.getCreateOrderPage = async (req, res) => {
-  try {
-    const cart = req.session.cart;
-    const quantity = req.body.quantity;
-    const productId = req.body.productId;
-    const products = await Product.find({_id: { $in: productId}});
-    const productsWithQuantity = products.map( product => {
-      const cartItem = cart.find(item => item.productId === product._id.toString());
-      return {
-        ...product.toObject(),
-        quantity: cart ? cartItem.quantity : 0
-      };
-    });
-    res.render('createOrder', {products: productsWithQuantity});
-  } catch (err) {
-    res.send(err);
-  }
-}
 
-exports.getDirectOrderPage = async (req, res) => {
-  const {productId, quantity} = req.body;
-  const products = await Product.find({_id: { $in: productId}});
-
-  res.render('directOrder', {products, quantity});
-}

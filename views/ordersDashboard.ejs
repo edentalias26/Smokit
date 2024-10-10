@@ -50,9 +50,6 @@
                             <h3>Order ID: <%= order._id %></h3>
                             <p>Status: <%= order.status %></p>
                             <p>Total Amount: $<%= order.totalAmount %></p>
-                            <p>Phone: <%= order.user.phone %></p>
-                            <p>email: <%= order.user.email %></p>
-                            <p>shippingAddress: <%= order.user.shippingAddress %></p>
                             <p>Ordered on: <%= order.createdAt.toDateString() %></p>
                             <ul style="list-style: none;" class="flex">
                                 <% order.products.forEach(item => { %>

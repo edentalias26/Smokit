@@ -56,7 +56,6 @@ exports.getCart = async (req, res) => {
             product
         };
     }));
-
     res.render('cart', { cart });
 };
 

@@ -35,6 +35,7 @@ exports.getOrdersPage = async (req, res) => {
     .populate("products.product")
     .sort({ createdAt: -1 });
     res.render("ordersDashboard", { orders });
+    console.log(orders)
   } else{
     let orders = await Order.find({status: status})
     .populate("products.product")
