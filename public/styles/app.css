@@ -50,10 +50,12 @@ a{
 .table-container{
     width: 350px;
     margin: 40px 0;
+    color: white;
 }
 
 
 .table{
+    color: #ffffff;
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr;
@@ -62,9 +64,13 @@ a{
 }
 
 .table li{
-    border: 0.3px solid gray;
+    border: 0.3px solid rgb(255, 255, 255);
     padding: 10px;
     border-radius: 10px;
+}
+
+table i {
+    color: #ffffff;
 }
 
 .table li:hover {
